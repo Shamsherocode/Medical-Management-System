@@ -135,8 +135,8 @@ let SidebarComponent = class SidebarComponent {
         return true;
     }
     ngOnInit() {
-        this.data = this.auth.getUser();
-        this.username = this.data.username;
+        // this.data = this.auth.getUser();
+        // this.username = this.data.username
         this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
     ngAfterViewInit() {
@@ -246,8 +246,9 @@ const environment = {
     production: false
 };
 // export const baseUrl1 = 'https://api.vcdplans.com/';
-const baseUrl = 'http://206.189.144.99:8000';
-const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+// export const baseUrl = 'http://206.189.144.99:8000';
+const baseUrl = 'http://165.227.11.15';
+const headers = { 'Content-Type': 'application/json' };
 const captchaKey = '6LdhHnodAAAAANT35rUOPEZ0TnF31D6qOqSfby81';
 
 
@@ -866,12 +867,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_admin_admin_layout_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./layouts/admin/admin-layout.component */ "YGuC");
 /* harmony import */ var _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./layouts/auth/auth-layout.component */ "le+r");
 /* harmony import */ var _app_routing__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./app.routing */ "beVS");
+/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ngx-cookie-service */ "b6Qw");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -908,6 +911,7 @@ AppModule = __decorate([
             _layouts_admin_admin_layout_component__WEBPACK_IMPORTED_MODULE_11__["AdminLayoutComponent"],
             _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_12__["AuthLayoutComponent"],
         ],
+        providers: [ngx_cookie_service__WEBPACK_IMPORTED_MODULE_14__["CookieService"]],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
     })
 ], AppModule);
@@ -1165,7 +1169,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "tyNb");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-cookie-service */ "b6Qw");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "qCKp");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1178,24 +1183,30 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 let AuthService = class AuthService {
-    constructor(router) {
+    constructor(router, cookies) {
         this.router = router;
-        this.user = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](null);
+        this.cookies = cookies;
+        this.user = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](null);
         this.token = null;
+        this.jwt = null;
         this.refreshToken = null;
-        const tokenData = localStorage.getItem('token');
-        this.refreshToken = localStorage.getItem('refreshToken');
-        if (tokenData) {
-            this.token = tokenData;
-        }
-        const userData = localStorage.getItem('user');
-        if (userData) {
-            const parsedData = JSON.parse(userData);
-            if (parsedData) {
-                this.setUser(parsedData);
-            }
-        }
+        // const tokenData = localStorage.getItem('token');
+        // const jwtData = this.cookies.get('jwt')
+        // console.log(jwtData)
+        // this.refreshToken = localStorage.getItem('refreshToken');
+        // if (jwtData) {
+        //   this.jwt = jwtData;
+        //   console.log(this.jwt)
+        // }
+        // const userData = localStorage.getItem('user');
+        // if (userData) {
+        //   const parsedData = JSON.parse(userData);
+        //   if (parsedData) {
+        //     this.setUser(parsedData);
+        //   }
+        // }
     }
     // Check user is Authenticate or not
     isAuthenticated() {
@@ -1212,10 +1223,22 @@ let AuthService = class AuthService {
         this.token = token;
         localStorage.setItem('token', token);
     }
+    // public setToken(token:string): void {
+    //   this.token = token;
+    //   this.cookies.set('token', token);
+    // }
     //Get Access Token
+    // public setJwt(jwt:string): void {
+    //   this.jwt = jwt;
+    //   this.cookies.set('jwt', jwt);
+    //   console.log(this.cookies, 'set in cookes')
+    //   console.log(this.jwt, 'store in jwt')
+    // }
     getAccessToken() {
-        if (this.token) {
-            return this.token;
+        console.log(this.jwt);
+        if (this.jwt) {
+            console.log(this.jwt);
+            return this.jwt;
         }
         else {
             return null;
@@ -1310,13 +1333,14 @@ let AuthService = class AuthService {
     }
 };
 AuthService.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"] },
+    { type: ngx_cookie_service__WEBPACK_IMPORTED_MODULE_2__["CookieService"] }
 ];
 AuthService = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
         providedIn: 'root'
     }),
-    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], ngx_cookie_service__WEBPACK_IMPORTED_MODULE_2__["CookieService"]])
 ], AuthService);
 
 

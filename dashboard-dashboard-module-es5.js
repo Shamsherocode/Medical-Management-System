@@ -1,5 +1,5 @@
 (function () {
-  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
   function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
@@ -37,7 +37,7 @@
 
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["dashboard-dashboard-module"], {
     /***/
@@ -263,9 +263,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var DashboardModule = function DashboardModule() {
+      var DashboardModule = /*#__PURE__*/_createClass(function DashboardModule() {
         _classCallCheck(this, DashboardModule);
-      };
+      });
 
       DashboardModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
         imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild(_dashboard_routing__WEBPACK_IMPORTED_MODULE_6__["DashboardRoutes"]), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _agm_core__WEBPACK_IMPORTED_MODULE_4__["AgmCoreModule"].forRoot({
@@ -581,9 +581,9 @@
 
       var _c0 = ["*"];
 
-      var MapsAPILoader = function MapsAPILoader() {
+      var MapsAPILoader = /*#__PURE__*/_createClass(function MapsAPILoader() {
         _classCallCheck(this, MapsAPILoader);
-      };
+      });
 
       MapsAPILoader.ɵfac = function MapsAPILoader_Factory(t) {
         return new (t || MapsAPILoader)();
@@ -2150,9 +2150,9 @@
        * of AGM.
        */
 
-      var FitBoundsAccessor = function FitBoundsAccessor() {
+      var FitBoundsAccessor = /*#__PURE__*/_createClass(function FitBoundsAccessor() {
         _classCallCheck(this, FitBoundsAccessor);
-      };
+      });
       /**
        * The FitBoundsService is responsible for computing the bounds of the a single map.
        */

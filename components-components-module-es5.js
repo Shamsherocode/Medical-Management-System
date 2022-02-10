@@ -1,7 +1,7 @@
 (function () {
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -128,9 +128,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var IconsComponent = function IconsComponent() {
+      var IconsComponent = /*#__PURE__*/_createClass(function IconsComponent() {
         _classCallCheck(this, IconsComponent);
-      };
+      });
 
       IconsComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'icons-cmp',
@@ -201,9 +201,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var ButtonsComponent = function ButtonsComponent() {
+      var ButtonsComponent = /*#__PURE__*/_createClass(function ButtonsComponent() {
         _classCallCheck(this, ButtonsComponent);
-      };
+      });
 
       ButtonsComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-buttons',
@@ -254,9 +254,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var TypographyComponent = function TypographyComponent() {
+      var TypographyComponent = /*#__PURE__*/_createClass(function TypographyComponent() {
         _classCallCheck(this, TypographyComponent);
-      };
+      });
 
       TypographyComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'typography-cmp',
@@ -404,9 +404,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var PanelsComponent = function PanelsComponent() {
+      var PanelsComponent = /*#__PURE__*/_createClass(function PanelsComponent() {
         _classCallCheck(this, PanelsComponent);
-      };
+      });
 
       PanelsComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'panels-cmp',
@@ -715,9 +715,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var ComponentsModule = function ComponentsModule() {
+      var ComponentsModule = /*#__PURE__*/_createClass(function ComponentsModule() {
         _classCallCheck(this, ComponentsModule);
-      };
+      });
 
       ComponentsModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
         imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild(_components_routing__WEBPACK_IMPORTED_MODULE_5__["ComponentsRoutes"]), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]],
@@ -768,9 +768,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var GridSystemComponent = function GridSystemComponent() {
+      var GridSystemComponent = /*#__PURE__*/_createClass(function GridSystemComponent() {
         _classCallCheck(this, GridSystemComponent);
-      };
+      });
 
       GridSystemComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'grid-cmp',

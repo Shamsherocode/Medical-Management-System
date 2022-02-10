@@ -15,7 +15,7 @@
 
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"], {
     /***/
@@ -258,8 +258,8 @@
         }, {
           key: "ngOnInit",
           value: function ngOnInit() {
-            this.data = this.auth.getUser();
-            this.username = this.data.username;
+            // this.data = this.auth.getUser();
+            // this.username = this.data.username
             this.menuItems = ROUTES.filter(function (menuItem) {
               return menuItem;
             });
@@ -364,9 +364,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var FixedPluginModule = function FixedPluginModule() {
+      var FixedPluginModule = /*#__PURE__*/_createClass(function FixedPluginModule() {
         _classCallCheck(this, FixedPluginModule);
-      };
+      });
 
       FixedPluginModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
         imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"], _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]],
@@ -442,10 +442,11 @@
         recaptchaSitekey: '6LdhHnodAAAAANT35rUOPEZ0TnF31D6qOqSfby81',
         production: false
       }; // export const baseUrl1 = 'https://api.vcdplans.com/';
+      // export const baseUrl = 'http://206.189.144.99:8000';
 
-      var baseUrl = 'http://206.189.144.99:8000';
+      var baseUrl = 'http://165.227.11.15';
       var headers = {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
       };
       var captchaKey = '6LdhHnodAAAAANT35rUOPEZ0TnF31D6qOqSfby81';
       /***/
@@ -505,9 +506,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var NavbarModule = function NavbarModule() {
+      var NavbarModule = /*#__PURE__*/_createClass(function NavbarModule() {
         _classCallCheck(this, NavbarModule);
-      };
+      });
 
       NavbarModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
         imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"], _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]],
@@ -976,9 +977,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var AppComponent = function AppComponent() {
+      var AppComponent = /*#__PURE__*/_createClass(function AppComponent() {
         _classCallCheck(this, AppComponent);
-      };
+      });
 
       AppComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
         selector: 'app-root',
@@ -1474,6 +1475,12 @@
       var _app_routing__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
       /*! ./app.routing */
       "beVS");
+      /* harmony import */
+
+
+      var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+      /*! ngx-cookie-service */
+      "b6Qw");
 
       var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
         var c = arguments.length,
@@ -1485,15 +1492,16 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var AppModule = function AppModule() {
+      var AppModule = /*#__PURE__*/_createClass(function AppModule() {
         _classCallCheck(this, AppModule);
-      };
+      });
 
       AppModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
         imports: [_angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_1__["BrowserAnimationsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forRoot(_app_routing__WEBPACK_IMPORTED_MODULE_13__["AppRoutes"], {
           useHash: true
         }), _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"], _sidebar_sidebar_module__WEBPACK_IMPORTED_MODULE_7__["SidebarModule"], _shared_navbar_navbar_module__WEBPACK_IMPORTED_MODULE_10__["NavbarModule"], _shared_footer_footer_module__WEBPACK_IMPORTED_MODULE_9__["FooterModule"], _shared_fixedplugin_fixedplugin_module__WEBPACK_IMPORTED_MODULE_8__["FixedPluginModule"]],
         declarations: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"], _layouts_admin_admin_layout_component__WEBPACK_IMPORTED_MODULE_11__["AdminLayoutComponent"], _layouts_auth_auth_layout_component__WEBPACK_IMPORTED_MODULE_12__["AuthLayoutComponent"]],
+        providers: [ngx_cookie_service__WEBPACK_IMPORTED_MODULE_14__["CookieService"]],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
       })], AppModule);
       /***/
@@ -1648,9 +1656,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var FooterModule = function FooterModule() {
+      var FooterModule = /*#__PURE__*/_createClass(function FooterModule() {
         _classCallCheck(this, FooterModule);
-      };
+      });
 
       FooterModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
         imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"], _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]],
@@ -1771,11 +1779,11 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var FooterComponent = function FooterComponent() {
+      var FooterComponent = /*#__PURE__*/_createClass(function FooterComponent() {
         _classCallCheck(this, FooterComponent);
 
         this.test = new Date();
-      };
+      });
 
       FooterComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'footer-cmp',
@@ -1818,7 +1826,13 @@
       /* harmony import */
 
 
-      var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ngx-cookie-service */
+      "b6Qw");
+      /* harmony import */
+
+
+      var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! rxjs */
       "qCKp");
 
@@ -1837,29 +1851,29 @@
       };
 
       var AuthService = /*#__PURE__*/function () {
-        function AuthService(router) {
+        function AuthService(router, cookies) {
           _classCallCheck(this, AuthService);
 
           this.router = router;
-          this.user = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](null);
+          this.cookies = cookies;
+          this.user = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](null);
           this.token = null;
-          this.refreshToken = null;
-          var tokenData = localStorage.getItem('token');
-          this.refreshToken = localStorage.getItem('refreshToken');
-
-          if (tokenData) {
-            this.token = tokenData;
-          }
-
-          var userData = localStorage.getItem('user');
-
-          if (userData) {
-            var parsedData = JSON.parse(userData);
-
-            if (parsedData) {
-              this.setUser(parsedData);
-            }
-          }
+          this.jwt = null;
+          this.refreshToken = null; // const tokenData = localStorage.getItem('token');
+          // const jwtData = this.cookies.get('jwt')
+          // console.log(jwtData)
+          // this.refreshToken = localStorage.getItem('refreshToken');
+          // if (jwtData) {
+          //   this.jwt = jwtData;
+          //   console.log(this.jwt)
+          // }
+          // const userData = localStorage.getItem('user');
+          // if (userData) {
+          //   const parsedData = JSON.parse(userData);
+          //   if (parsedData) {
+          //     this.setUser(parsedData);
+          //   }
+          // }
         } // Check user is Authenticate or not
 
 
@@ -1880,13 +1894,26 @@
           value: function setToken(token) {
             this.token = token;
             localStorage.setItem('token', token);
-          } //Get Access Token
+          } // public setToken(token:string): void {
+          //   this.token = token;
+          //   this.cookies.set('token', token);
+          // }
+          //Get Access Token
+          // public setJwt(jwt:string): void {
+          //   this.jwt = jwt;
+          //   this.cookies.set('jwt', jwt);
+          //   console.log(this.cookies, 'set in cookes')
+          //   console.log(this.jwt, 'store in jwt')
+          // }
 
         }, {
           key: "getAccessToken",
           value: function getAccessToken() {
-            if (this.token) {
-              return this.token;
+            console.log(this.jwt);
+
+            if (this.jwt) {
+              console.log(this.jwt);
+              return this.jwt;
             } else {
               return null;
             }
@@ -2012,12 +2039,14 @@
       AuthService.ctorParameters = function () {
         return [{
           type: _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]
+        }, {
+          type: ngx_cookie_service__WEBPACK_IMPORTED_MODULE_2__["CookieService"]
         }];
       };
 
       AuthService = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
         providedIn: 'root'
-      }), __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])], AuthService);
+      }), __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"], ngx_cookie_service__WEBPACK_IMPORTED_MODULE_2__["CookieService"]])], AuthService);
       /***/
     },
 
@@ -2063,9 +2092,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var AuthLayoutComponent = function AuthLayoutComponent() {
+      var AuthLayoutComponent = /*#__PURE__*/_createClass(function AuthLayoutComponent() {
         _classCallCheck(this, AuthLayoutComponent);
-      };
+      });
 
       AuthLayoutComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-layout',
@@ -2134,9 +2163,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var SidebarModule = function SidebarModule() {
+      var SidebarModule = /*#__PURE__*/_createClass(function SidebarModule() {
         _classCallCheck(this, SidebarModule);
-      };
+      });
 
       SidebarModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
         imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"], _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbModule"]],

@@ -11,7 +11,7 @@
 
   function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
   function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
@@ -31,7 +31,7 @@
 
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["forms-forms-module"], {
     /***/
@@ -3008,7 +3008,7 @@
         return Ng2DropdownState;
       }();
 
-      var DropdownStateService = function DropdownStateService() {
+      var DropdownStateService = /*#__PURE__*/_createClass(function DropdownStateService() {
         _classCallCheck(this, DropdownStateService);
 
         this.menuState = {
@@ -3018,7 +3018,7 @@
           }
         };
         this.dropdownState = new Ng2DropdownState();
-      };
+      });
 
       DropdownStateService.ɵfac = function DropdownStateService_Factory(t) {
         return new (t || DropdownStateService)();
@@ -3680,9 +3680,9 @@
       Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])()], Ng2Dropdown.prototype, "onHide", void 0);
       Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostListener"])('window:scroll')], Ng2Dropdown.prototype, "scrollListener", null);
 
-      var Ng2DropdownModule = function Ng2DropdownModule() {
+      var Ng2DropdownModule = /*#__PURE__*/_createClass(function Ng2DropdownModule() {
         _classCallCheck(this, Ng2DropdownModule);
-      };
+      });
 
       Ng2DropdownModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({
         type: Ng2DropdownModule
@@ -4025,9 +4025,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var Forms = function Forms() {
+      var Forms = /*#__PURE__*/_createClass(function Forms() {
         _classCallCheck(this, Forms);
-      };
+      });
 
       Forms = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
         imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild(_forms_routing__WEBPACK_IMPORTED_MODULE_8__["FormsRoutes"]), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], ngx_chips__WEBPACK_IMPORTED_MODULE_7__["TagInputModule"], jw_bootstrap_switch_ng2__WEBPACK_IMPORTED_MODULE_5__["JwBootstrapSwitchNg2Module"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]],
@@ -5363,11 +5363,11 @@
       }), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", Object)], TagInputForm.prototype, "input", void 0);
       Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [String])], TagInputForm.prototype, "inputText", null);
 
-      var TagRipple = function TagRipple() {
+      var TagRipple = /*#__PURE__*/_createClass(function TagRipple() {
         _classCallCheck(this, TagRipple);
 
         this.state = 'none';
-      };
+      });
 
       TagRipple.ɵfac = function TagRipple_Factory(t) {
         return new (t || TagRipple)();
@@ -7843,9 +7843,9 @@
       Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["HostBinding"])('attr.tabindex'), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:type", String), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [])], TagInputComponent.prototype, "tabindexAttr", null);
       TagInputComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"])("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], DragProvider])], TagInputComponent);
 
-      var DeleteIconComponent = function DeleteIconComponent() {
+      var DeleteIconComponent = /*#__PURE__*/_createClass(function DeleteIconComponent() {
         _classCallCheck(this, DeleteIconComponent);
-      };
+      });
 
       DeleteIconComponent.ɵfac = function DeleteIconComponent_Factory(t) {
         return new (t || DeleteIconComponent)();
@@ -8470,9 +8470,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var RegularFormsComponent = function RegularFormsComponent() {
+      var RegularFormsComponent = /*#__PURE__*/_createClass(function RegularFormsComponent() {
         _classCallCheck(this, RegularFormsComponent);
-      };
+      });
 
       RegularFormsComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'regularforms-cmp',
@@ -10360,9 +10360,9 @@
        */
 
 
-      var JwBootstrapSwitchNg2Module = function JwBootstrapSwitchNg2Module() {
+      var JwBootstrapSwitchNg2Module = /*#__PURE__*/_createClass(function JwBootstrapSwitchNg2Module() {
         _classCallCheck(this, JwBootstrapSwitchNg2Module);
-      };
+      });
 
       JwBootstrapSwitchNg2Module.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({
         type: JwBootstrapSwitchNg2Module

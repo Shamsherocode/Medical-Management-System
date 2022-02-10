@@ -1,4 +1,8 @@
 (function () {
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["timeline-timeline-module"], {
@@ -124,9 +128,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var TimelineModule = function TimelineModule() {
+      var TimelineModule = /*#__PURE__*/_createClass(function TimelineModule() {
         _classCallCheck(this, TimelineModule);
-      };
+      });
 
       TimelineModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
         imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild(_timeline_routing__WEBPACK_IMPORTED_MODULE_5__["TimelineRoutes"]), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]],
@@ -177,9 +181,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var TimelineComponent = function TimelineComponent() {
+      var TimelineComponent = /*#__PURE__*/_createClass(function TimelineComponent() {
         _classCallCheck(this, TimelineComponent);
-      };
+      });
 
       TimelineComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'timeline-cmp',

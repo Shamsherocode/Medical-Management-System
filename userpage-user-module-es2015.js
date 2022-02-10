@@ -68,9 +68,9 @@ let UserComponent = class UserComponent {
         this.email = '';
     }
     ngOnInit() {
-        this.data = this.auth.getUser();
-        this.username = this.data.username;
-        this.email = this.data.email;
+        // this.data = this.auth.getUser();
+        // this.username = this.data.username
+        // this.email = this.data.email
     }
 };
 UserComponent.ctorParameters = () => [

@@ -3,7 +3,7 @@
 
   function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
 
-  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
   function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
@@ -21,7 +21,7 @@
 
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["maps-maps-module"], {
     /***/
@@ -2027,7 +2027,7 @@
           return _super3.call(this, nguiMapComp, 'BicyclingLayer', INPUTS$1, OUTPUTS$1);
         }
 
-        return BicyclingLayer;
+        return _createClass(BicyclingLayer);
       }(BaseMapDirective);
 
       BicyclingLayer.ɵfac = function BicyclingLayer_Factory(t) {
@@ -3115,7 +3115,7 @@
           return _this26;
         }
 
-        return DrawingManager;
+        return _createClass(DrawingManager);
       }(BaseMapDirective);
 
       DrawingManager.ɵfac = function DrawingManager_Factory(t) {
@@ -3293,7 +3293,7 @@
           return _this28;
         }
 
-        return HeatmapLayer;
+        return _createClass(HeatmapLayer);
       }(BaseMapDirective);
 
       HeatmapLayer.ɵfac = function HeatmapLayer_Factory(t) {
@@ -3361,7 +3361,7 @@
           return _super11.call(this, nguiMapComp, 'KmlLayer', INPUTS$10, OUTPUTS$10);
         }
 
-        return KmlLayer;
+        return _createClass(KmlLayer);
       }(BaseMapDirective);
 
       KmlLayer.ɵfac = function KmlLayer_Factory(t) {
@@ -3589,7 +3589,7 @@
        */
 
 
-      var PlacesAutoComplete =
+      var PlacesAutoComplete = /*#__PURE__*/_createClass(
       /**
        * @param {?} optionBuilder
        * @param {?} elementRef
@@ -3626,7 +3626,7 @@
         apiLoader.api$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])()).subscribe(function () {
           return _this32.initialize();
         });
-      };
+      });
 
       PlacesAutoComplete.ɵfac = function PlacesAutoComplete_Factory(t) {
         return new (t || PlacesAutoComplete)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](OptionBuilder), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](NgMapApiLoader));
@@ -3733,7 +3733,7 @@
           return _super13.call(this, nguiMapComp, 'Polygon', INPUTS$12, OUTPUTS$12);
         }
 
-        return Polygon;
+        return _createClass(Polygon);
       }(BaseMapDirective);
 
       Polygon.ɵfac = function Polygon_Factory(t) {
@@ -3821,7 +3821,7 @@
           return _super14.call(this, nguiMapComp, 'Polyline', INPUTS$13, OUTPUTS$13);
         }
 
-        return Polyline;
+        return _createClass(Polyline);
       }(BaseMapDirective);
 
       Polyline.ɵfac = function Polyline_Factory(t) {
@@ -4045,7 +4045,7 @@
           return _super16.call(this, nguiMapComp, 'TrafficLayer', INPUTS$15, OUTPUTS$15);
         }
 
-        return TrafficLayer;
+        return _createClass(TrafficLayer);
       }(BaseMapDirective);
 
       TrafficLayer.ɵfac = function TrafficLayer_Factory(t) {
@@ -4108,7 +4108,7 @@
           return _super17.call(this, nguiMapComp, 'TransitLayer', INPUTS$16, OUTPUTS$16);
         }
 
-        return TransitLayer;
+        return _createClass(TransitLayer);
       }(BaseMapDirective);
 
       TransitLayer.ɵfac = function TransitLayer_Factory(t) {
@@ -4585,9 +4585,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var MapsModule = function MapsModule() {
+      var MapsModule = /*#__PURE__*/_createClass(function MapsModule() {
         _classCallCheck(this, MapsModule);
-      };
+      });
 
       MapsModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
         imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild(_maps_routing__WEBPACK_IMPORTED_MODULE_5__["MapsRoutes"]), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _ngui_map__WEBPACK_IMPORTED_MODULE_4__["NguiMapModule"].forRoot({

@@ -3,7 +3,7 @@
 
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["pages-pages-module"], {
     /***/
@@ -93,6 +93,12 @@
       var _services_api_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! ../../services/api.service */
       "H+bZ");
+      /* harmony import */
+
+
+      var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! ngx-cookie-service */
+      "b6Qw");
 
       var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
         var c = arguments.length,
@@ -109,7 +115,7 @@
       };
 
       var LoginComponent = /*#__PURE__*/function () {
-        function LoginComponent(element, http, recaptcha3, auth, router, formBuilder, api) {
+        function LoginComponent(element, http, recaptcha3, auth, router, formBuilder, api, cookies) {
           _classCallCheck(this, LoginComponent);
 
           this.element = element;
@@ -119,6 +125,7 @@
           this.router = router;
           this.formBuilder = formBuilder;
           this.api = api;
+          this.cookies = cookies;
           this.message = '';
           this.communicationChannel = '';
           this.deviceID = '';
@@ -253,27 +260,49 @@
             if (isValid) {
               this.loading = true;
               var bodydata = {
-                username: model.username,
+                email: model.username,
                 password: model.password
               };
+              console.log(bodydata);
               this.submitted = true;
-              this.api.httpRequest('post', '/api/login/', bodydata, false).subscribe(function (result) {
+              var headers = {
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                  'Content-Type': 'application/json'
+                })
+              }; // this.api.httpRequest('post', '/api/login', bodydata).subscribe((result: any) => {
+
+              this.http.post('http://www.api.psd2htmlx.com/api/login', bodydata, headers).subscribe(function (result) {
                 _this.submitted = false;
+                console.log(result);
 
-                _this.auth.setToken(result.token);
+                _this.auth.setToken(result.jwt); // this.auth.setJwt(result.jwt)
 
-                _this.auth.setUser({
-                  email: result.email,
-                  username: result.username
-                });
 
                 _this.message = "";
                 _this.loading = false;
-                window.location.href = 'dashboard';
+                window.location.href = 'login'; // this.getUserData()
               }, function (error) {
                 _this.loading = false;
                 _this.message = error.message;
               });
+            }
+          }
+        }, {
+          key: "getUserData",
+          value: function getUserData() {
+            var headers = {
+              headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
+                'Content-Type': 'application/json'
+              })
+            };
+            console.log(this.auth.jwt, "before");
+
+            if (this.auth.jwt) {
+              console.log(this.auth.jwt, "after");
+              this.http.get('http://www.api.psd2htmlx.com/api/user', headers).subscribe(function (data) {// console.log(data, 'user')
+              });
+            } else {
+              window.location.href = 'login';
             }
           }
         }, {
@@ -330,7 +359,7 @@
                 captcha: token
               };
 
-              _this2.api.httpRequest('post', 'users/forgotPassword/step3', bodydata, false).subscribe(function (result) {
+              _this2.api.httpRequest('post', 'users/forgotPassword/step3', bodydata).subscribe(function (result) {
                 if (result.isOK) {
                   _this2.message = "";
                   _this2.forgotPassStep = 4;
@@ -370,7 +399,7 @@
                     deviceID: _this3.deviceID
                   };
 
-                  _this3.api.httpRequest('post', 'users/forgotPassword/step1', bodydata, false).subscribe(function (result) {
+                  _this3.api.httpRequest('post', 'users/forgotPassword/step1', bodydata).subscribe(function (result) {
                     if (result.isOK) {
                       _this3.ques = result.params;
                       _this3.message = "";
@@ -395,7 +424,7 @@
                     answer: model.answer
                   };
 
-                  _this3.api.httpRequest('post', 'users/forgotPassword/step2', _bodydata, false).subscribe(function (result) {
+                  _this3.api.httpRequest('post', 'users/forgotPassword/step2', _bodydata).subscribe(function (result) {
                     if (result.isOK) {
                       _this3.cred = result.params;
                       _this3.message = "";
@@ -430,7 +459,7 @@
                       captcha: token
                     };
 
-                    _this3.api.httpRequest('post', 'users/forgotPassword/step4', _bodydata2, false).subscribe(function (result) {
+                    _this3.api.httpRequest('post', 'users/forgotPassword/step4', _bodydata2).subscribe(function (result) {
                       if (result.isOK) {
                         _this3.message = "";
 
@@ -470,7 +499,7 @@
                     captcha: token
                   };
 
-                  _this4.api.httpRequest('post', '/users/' + model.email + '/emails/usernameReminder', bodydata, false).subscribe(function (result) {
+                  _this4.api.httpRequest('post', '/users/' + model.email + '/emails/usernameReminder', bodydata).subscribe(function (result) {
                     if (result.isOK) {
                       _this4.message = "";
                       _this4.loading = false;
@@ -516,104 +545,15 @@
           type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"]
         }, {
           type: _services_api_service__WEBPACK_IMPORTED_MODULE_7__["ApiService"]
+        }, {
+          type: ngx_cookie_service__WEBPACK_IMPORTED_MODULE_8__["CookieService"]
         }];
       };
 
       LoginComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'login-cmp',
         template: _raw_loader_login_component_html__WEBPACK_IMPORTED_MODULE_0__["default"]
-      }), __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"], _services_ng_recaptcha3_service__WEBPACK_IMPORTED_MODULE_5__["NgRecaptcha3Service"], _services_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"], _services_api_service__WEBPACK_IMPORTED_MODULE_7__["ApiService"]])], LoginComponent);
-      /***/
-    },
-
-    /***/
-    "EjJx":
-    /*!*********************************************************!*\
-      !*** ./node_modules/jwt-decode/build/jwt-decode.esm.js ***!
-      \*********************************************************/
-
-    /*! exports provided: default, InvalidTokenError */
-
-    /***/
-    function EjJx(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "InvalidTokenError", function () {
-        return n;
-      });
-
-      function e(e) {
-        this.message = e;
-      }
-
-      e.prototype = new Error(), e.prototype.name = "InvalidCharacterError";
-
-      var r = "undefined" != typeof window && window.atob && window.atob.bind(window) || function (r) {
-        var t = String(r).replace(/=+$/, "");
-        if (t.length % 4 == 1) throw new e("'atob' failed: The string to be decoded is not correctly encoded.");
-
-        for (var n, o, a = 0, i = 0, c = ""; o = t.charAt(i++); ~o && (n = a % 4 ? 64 * n + o : o, a++ % 4) ? c += String.fromCharCode(255 & n >> (-2 * a & 6)) : 0) {
-          o = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".indexOf(o);
-        }
-
-        return c;
-      };
-
-      function t(e) {
-        var t = e.replace(/-/g, "+").replace(/_/g, "/");
-
-        switch (t.length % 4) {
-          case 0:
-            break;
-
-          case 2:
-            t += "==";
-            break;
-
-          case 3:
-            t += "=";
-            break;
-
-          default:
-            throw "Illegal base64url string!";
-        }
-
-        try {
-          return function (e) {
-            return decodeURIComponent(r(e).replace(/(.)/g, function (e, r) {
-              var t = r.charCodeAt(0).toString(16).toUpperCase();
-              return t.length < 2 && (t = "0" + t), "%" + t;
-            }));
-          }(t);
-        } catch (e) {
-          return r(t);
-        }
-      }
-
-      function n(e) {
-        this.message = e;
-      }
-
-      function o(e, r) {
-        if ("string" != typeof e) throw new n("Invalid token specified");
-        var o = !0 === (r = r || {}).header ? 0 : 1;
-
-        try {
-          return JSON.parse(t(e.split(".")[o]));
-        } catch (e) {
-          throw new n("Invalid token specified: " + e.message);
-        }
-      }
-
-      n.prototype = new Error(), n.prototype.name = "InvalidTokenError";
-      /* harmony default export */
-
-      __webpack_exports__["default"] = o; //# sourceMappingURL=jwt-decode.esm.js.map
-
+      }), __metadata("design:paramtypes", [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"], _services_ng_recaptcha3_service__WEBPACK_IMPORTED_MODULE_5__["NgRecaptcha3Service"], _services_auth_service__WEBPACK_IMPORTED_MODULE_6__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"], _services_api_service__WEBPACK_IMPORTED_MODULE_7__["ApiService"], ngx_cookie_service__WEBPACK_IMPORTED_MODULE_8__["CookieService"]])], LoginComponent);
       /***/
     },
 
@@ -660,12 +600,6 @@
       var environments_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! environments/environment */
       "AytR");
-      /* harmony import */
-
-
-      var jwt_decode__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-      /*! jwt-decode */
-      "EjJx");
 
       var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
         var c = arguments.length,
@@ -691,83 +625,60 @@
 
         _createClass(ApiService, [{
           key: "httpRequest",
-          value: function httpRequest(method, url, data, withAuth) {
+          value: function httpRequest(method, url, data) {
             if (data) {
               this.incodeURL = this.incodedData(data);
-            }
+            } // if(withAuth){
+            //   if(this.checkAccessToken()){
+            // 	 this.apiheader = this.HeaderWithToken();
+            // 	}else{
+            // 	 window.location.href = 'login'
+            // 	}
+            // }else{
+            // 	this.apiheader = this.Header();
+            // }
 
-            if (withAuth) {
-              if (this.checkAccessToken()) {
-                this.apiheader = this.HeaderWithToken();
-              } else {
-                window.location.href = 'login';
-              }
-            } else {
-              this.apiheader = this.Header();
-            }
 
             if (method == 'post') {
               return this.http.post("".concat(environments_environment__WEBPACK_IMPORTED_MODULE_3__["baseUrl"]).concat(url), this.incodeURL, this.apiheader);
             } else if (method == 'put') {} else {
               return this.http.get("".concat(environments_environment__WEBPACK_IMPORTED_MODULE_3__["baseUrl"]).concat(url), this.apiheader);
             }
-          }
-        }, {
-          key: "checkAccessToken",
-          value: function checkAccessToken() {
-            var AccessToken = this.authService.getAccessToken();
+          } // public checkAccessToken(){
+          // var AccessToken = this.authService.getAccessToken();
+          // if(AccessToken){
+          // var tokenData = jwt_decode(AccessToken);
+          // var _accessTokenCurrentTime = new Date();
+          // var _accessTokenExpTime = new Date(tokenData['exp'] * 1000);
+          // var seconds = Math.floor((_accessTokenExpTime.getTime() - _accessTokenCurrentTime.getTime())/ 1000) ;
+          // console.log(seconds)
+          // if(seconds < 5){
+          // 	return this.refreshAccessToken();
+          // }else{
+          // 	return true
+          // }
+          // }
+          // }
+          // public refreshAccessToken(){
+          //   const url = 'jwtRefreshSessions';
+          //   var data = {'refreshToken': this.authService.getRefreshToken(), 'deviceID': this.authService.getDeviceID()};
+          //   const incodeURL = this.incodedData(data)
+          //   return this.http.post<any>(`${baseUrl}${url}`, incodeURL, { headers: headers }).subscribe((result: any) => {
+          //     if(result.isOK){
+          //    	 this.authService.setToken(result.authData.accessToken)
+          //    	 this.authService.setRefreshToken(result.authData.refreshToken)
+          //    	 return true;
+          //     }else{
+          //     return false;
+          //     }
+          //   })
+          // }
+          // public HeaderWithToken() {
+          //   let header = new HttpHeaders();
+          //   header = header.append('Authorization', 'Bearer ' + this.authService.getAccessToken());
+          //   return { headers: header };
+          // }
 
-            if (AccessToken) {
-              var tokenData = Object(jwt_decode__WEBPACK_IMPORTED_MODULE_4__["default"])(AccessToken);
-
-              var _accessTokenCurrentTime = new Date();
-
-              var _accessTokenExpTime = new Date(tokenData['exp'] * 1000);
-
-              var seconds = Math.floor((_accessTokenExpTime.getTime() - _accessTokenCurrentTime.getTime()) / 1000);
-              console.log(seconds);
-
-              if (seconds < 5) {
-                return this.refreshAccessToken();
-              } else {
-                return true;
-              }
-            }
-          }
-        }, {
-          key: "refreshAccessToken",
-          value: function refreshAccessToken() {
-            var _this5 = this;
-
-            var url = 'jwtRefreshSessions';
-            var data = {
-              'refreshToken': this.authService.getRefreshToken(),
-              'deviceID': this.authService.getDeviceID()
-            };
-            var incodeURL = this.incodedData(data);
-            return this.http.post("".concat(environments_environment__WEBPACK_IMPORTED_MODULE_3__["baseUrl"]).concat(url), incodeURL, {
-              headers: environments_environment__WEBPACK_IMPORTED_MODULE_3__["headers"]
-            }).subscribe(function (result) {
-              if (result.isOK) {
-                _this5.authService.setToken(result.authData.accessToken);
-
-                _this5.authService.setRefreshToken(result.authData.refreshToken);
-
-                return true;
-              } else {
-                return false;
-              }
-            });
-          }
-        }, {
-          key: "HeaderWithToken",
-          value: function HeaderWithToken() {
-            var header = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]();
-            header = header.append('Authorization', 'Bearer ' + this.authService.getAccessToken());
-            return {
-              headers: header
-            };
-          }
         }, {
           key: "Header",
           value: function Header() {
@@ -909,9 +820,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var PagesModule = function PagesModule() {
+      var PagesModule = /*#__PURE__*/_createClass(function PagesModule() {
         _classCallCheck(this, PagesModule);
-      };
+      });
 
       PagesModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
         imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild(_pages_routing__WEBPACK_IMPORTED_MODULE_5__["PagesRoutes"]), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"]],
@@ -1262,7 +1173,7 @@
 
       var NgRecaptcha3Service = /*#__PURE__*/function () {
         function NgRecaptcha3Service() {
-          var _this6 = this;
+          var _this5 = this;
 
           _classCallCheck(this, NgRecaptcha3Service);
 
@@ -1271,7 +1182,7 @@
           this.isLoaded = false;
 
           window['ngRecaptcha3Loaded'] = function () {
-            _this6.isLoaded = true;
+            _this5.isLoaded = true;
           };
 
           this.scriptId = +new Date();
@@ -1291,18 +1202,18 @@
         }, {
           key: "init",
           value: function init(siteKey) {
-            var _this7 = this;
+            var _this6 = this;
 
             return new Promise(function (resolve, reject) {
-              if (_this7.isLoaded) {
+              if (_this6.isLoaded) {
                 resolve('success');
                 return;
               } else {
-                _this7.siteKey = siteKey;
+                _this6.siteKey = siteKey;
                 var script = document.createElement('script');
                 script.innerHTML = '';
-                script.src = _this7.baseUrl + "?render=".concat(_this7.siteKey, "&onload=ngRecaptcha3Loaded");
-                script.id = "recapthcha-".concat(_this7.scriptId);
+                script.src = _this6.baseUrl + "?render=".concat(_this6.siteKey, "&onload=ngRecaptcha3Loaded");
+                script.id = "recapthcha-".concat(_this6.scriptId);
                 script.async = true;
                 script.defer = true;
 

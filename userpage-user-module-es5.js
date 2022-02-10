@@ -3,7 +3,7 @@
 
   function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
 
   (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["userpage-user-module"], {
     /***/
@@ -125,10 +125,9 @@
 
         _createClass(UserComponent, [{
           key: "ngOnInit",
-          value: function ngOnInit() {
-            this.data = this.auth.getUser();
-            this.username = this.data.username;
-            this.email = this.data.email;
+          value: function ngOnInit() {// this.data = this.auth.getUser();
+            // this.username = this.data.username
+            // this.email = this.data.email
           }
         }]);
 
@@ -214,9 +213,9 @@
         return c > 3 && r && Object.defineProperty(target, key, r), r;
       };
 
-      var UserModule = function UserModule() {
+      var UserModule = /*#__PURE__*/_createClass(function UserModule() {
         _classCallCheck(this, UserModule);
-      };
+      });
 
       UserModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
         imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forChild(_user_routing__WEBPACK_IMPORTED_MODULE_5__["UserRoutes"]), _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"]],
