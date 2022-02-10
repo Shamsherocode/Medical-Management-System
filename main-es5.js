@@ -1909,10 +1909,7 @@
         }, {
           key: "getAccessToken",
           value: function getAccessToken() {
-            console.log(this.jwt);
-
             if (this.jwt) {
-              console.log(this.jwt);
               return this.jwt;
             } else {
               return null;

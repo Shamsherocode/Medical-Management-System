@@ -181,7 +181,6 @@ let LoginComponent = class LoginComponent {
                 email: model.username,
                 password: model.password,
             };
-            console.log(bodydata);
             this.submitted = true;
             let headers = {
                 headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -191,12 +190,11 @@ let LoginComponent = class LoginComponent {
             // this.api.httpRequest('post', '/api/login', bodydata).subscribe((result: any) => {
             this.http.post('http://www.api.psd2htmlx.com/api/login', bodydata, headers).subscribe((result) => {
                 this.submitted = false;
-                console.log(result);
                 this.auth.setToken(result.jwt);
                 // this.auth.setJwt(result.jwt)
                 this.message = "";
                 this.loading = false;
-                window.location.href = 'login';
+                window.location.href = '#/dashboard';
                 // this.getUserData()
             }, error => {
                 this.loading = false;
@@ -210,11 +208,8 @@ let LoginComponent = class LoginComponent {
                 'Content-Type': 'application/json'
             })
         };
-        console.log(this.auth.jwt, "before");
         if (this.auth.jwt) {
-            console.log(this.auth.jwt, "after");
             this.http.get('http://www.api.psd2htmlx.com/api/user', headers).subscribe((data) => {
-                // console.log(data, 'user')
             });
         }
         else {

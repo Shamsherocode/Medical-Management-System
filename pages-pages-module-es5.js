@@ -263,7 +263,6 @@
                 email: model.username,
                 password: model.password
               };
-              console.log(bodydata);
               this.submitted = true;
               var headers = {
                 headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({
@@ -273,14 +272,13 @@
 
               this.http.post('http://www.api.psd2htmlx.com/api/login', bodydata, headers).subscribe(function (result) {
                 _this.submitted = false;
-                console.log(result);
 
                 _this.auth.setToken(result.jwt); // this.auth.setJwt(result.jwt)
 
 
                 _this.message = "";
                 _this.loading = false;
-                window.location.href = 'login'; // this.getUserData()
+                window.location.href = '#/dashboard'; // this.getUserData()
               }, function (error) {
                 _this.loading = false;
                 _this.message = error.message;
@@ -295,12 +293,9 @@
                 'Content-Type': 'application/json'
               })
             };
-            console.log(this.auth.jwt, "before");
 
             if (this.auth.jwt) {
-              console.log(this.auth.jwt, "after");
-              this.http.get('http://www.api.psd2htmlx.com/api/user', headers).subscribe(function (data) {// console.log(data, 'user')
-              });
+              this.http.get('http://www.api.psd2htmlx.com/api/user', headers).subscribe(function (data) {});
             } else {
               window.location.href = 'login';
             }

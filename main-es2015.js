@@ -1235,9 +1235,7 @@ let AuthService = class AuthService {
     //   console.log(this.jwt, 'store in jwt')
     // }
     getAccessToken() {
-        console.log(this.jwt);
         if (this.jwt) {
-            console.log(this.jwt);
             return this.jwt;
         }
         else {
